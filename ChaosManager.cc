@@ -110,7 +110,7 @@ int ChaosManager::getUniqueNodeId(int numNodes) {
 
 void ChaosManager::processCommand(int command, int nodeNum) {
     // resolve target node
-    string targetString = "host[" + std::to_string(nodeNum) + "]";
+    string targetString = "host[" + std::to_string(nodeNum) + "]";  // string "host[" needs to be updated with respective node naming convention used in network.
     const char *target = &targetString[0];
     cModule *module = getModuleByPath(target);
     NodeStatus *nodeStatus = dynamic_cast<NodeStatus *>(module->getSubmodule("status"));
@@ -135,6 +135,7 @@ void ChaosManager::processCommand(int command, int nodeNum) {
     }
 }
 
+// Resolve simulation time limit from ini file.
 int ChaosManager::getResolvedSimTimeLimit() {
     int timeLimit = 0;
     cConfiguration *config = getEnvir()->getConfig();
